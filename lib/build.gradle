@@ -1,23 +1,78 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode rootProject.ext.libVersionCode
+        versionName rootProject.ext.libVersionName
+        consumerProguardFiles 'proguard-rules.pro'
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
+configurations {
+    doclava
+}
+
 dependencies {
-    // Nothing
+    doclava 'com.google.doclava:doclava:1.0.6'
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task androidJavadocs(type: Javadoc) {
+    title = ""
+    source = [android.sourceSets.main.java.srcDirs, android.sourceSets.main.res.srcDirs]
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.docletpath = configurations.doclava.files as List
+    options.doclet = "com.google.doclava.Doclava"
+    options.addStringOption("XDignore.symbol.file", "true")
+    failOnError = false
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+publishing {
+    publications {
+        dev(MavenPublication) {
+            groupId 'fr.dadda.jv.android'
+            artifactId 'android-timeago'
+            version rootProject.ext.libVersionName + '-SNAPSHOT'
+            artifact 'build/outputs/aar/lib-debug.aar'
+        }
+        release(MavenPublication) {
+            groupId 'fr.dadda.jv.android'
+            artifactId 'android-timeago'
+            version rootProject.ext.libVersionName
+            artifact androidSourcesJar
+            artifact androidJavadocsJar
+            artifact 'build/outputs/aar/lib-release.aar'
+        }
+    }
+    repositories {
+        maven {
+            name 'Bintray'
+            url 'https://api.bintray.com/maven/jivy/maven/Android-TimeAgo'
+            credentials {
+                username System.getenv("BINTRAY_UPLOAD_DIRECTORY_TASK_USERNAME")
+                password System.getenv("BINTRAY_UPLOAD_DIRECTORY_TASK_PASSWORD")
+            }
+        }
+    }
 }
