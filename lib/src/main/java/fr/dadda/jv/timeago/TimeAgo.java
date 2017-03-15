@@ -27,7 +27,7 @@ public class TimeAgo {
         return time(context, System.currentTimeMillis() - millis);
     }
 
-    public static String time(Context context, long diffMillis) {
+    private static String time(Context context, long diffMillis) {
         double seconds = Math.abs(diffMillis) / 1000;
         double minutes = seconds / 60;
         double hours = minutes / 60;
