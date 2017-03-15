@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timeago_ago">il y a %1$s</string>
+    <string name="timeago_from_now">dans %1$s</string>
+
+    <string name="timeago_secondes">moins d\'une minute</string>
+    <string name="timeago_minute">une minute</string>
+    <string name="timeago_minutes">%1$d minutes</string>
+    <string name="timeago_hour">une heure</string>
+    <string name="timeago_hours">%1$d heures</string>
+    <string name="timeago_day">un jour</string>
+    <string name="timeago_days">%1$d jours</string>
+    <string name="timeago_month">un mois</string>
+    <string name="timeago_months">%1$d mois</string>
+    <string name="timeago_year">un an</string>
+    <string name="timeago_years">%1$d ans</string>
+</resources>
