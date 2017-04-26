@@ -12,6 +12,16 @@ String hours = TimeAgo.timeUntil(current - (6 * 60 * 60 * 1000));	// returns "6 
 ```
 
 
+##Changelog
+
+* 1.1
+ * Fixed crash when displaying days, months or years number
+
+* 1.0
+ * Initial release
+
+
+
 ##Contribution
 
 If you would like to contribute locale-specific properties files please fork this repository and open a pull request.

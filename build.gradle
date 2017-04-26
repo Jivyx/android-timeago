@@ -2,8 +2,8 @@ ext {
     compileSdkVersion = 25
     buildToolsVersion = "25.0.2"
 
-    libVersionName = "1.0"
-    libVersionCode = 1
+    libVersionName = "1.1"
+    libVersionCode = 2
 }
 
 buildscript {
