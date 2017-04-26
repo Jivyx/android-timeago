@@ -48,15 +48,15 @@ public class TimeAgo {
         } else if (hours < 42) {
             time = context.getString(R.string.timeago_day);
         } else if (days < 30) {
-            time = context.getString(R.string.timeago_days, Math.floor(days));
+            time = context.getString(R.string.timeago_days, Math.round(Math.floor(days)));
         } else if (days < 45) {
             time = context.getString(R.string.timeago_month);
         } else if (days < 365) {
-            time = context.getString(R.string.timeago_months, Math.floor(days / 30));
+            time = context.getString(R.string.timeago_months, Math.round(Math.floor(days / 30)));
         } else if (years < 1.5) {
             time = context.getString(R.string.timeago_year);
         } else {
-            time = context.getString(R.string.timeago_years, Math.floor(years));
+            time = context.getString(R.string.timeago_years, Math.round(Math.floor(years)));
         }
 
         if (diffMillis < 0) {
