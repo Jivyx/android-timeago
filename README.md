@@ -1,9 +1,9 @@
-#Android timeago library
+# Android timeago library
 
 This is an Android port of the [jquery-timeago](https://github.com/rmm5t/jquery-timeago) plug-in.  Please visit the [jquery-timeago](http://rmm5t.github.com/jquery-timeago/) project page to read more about fuzzy timestamps.
 
 
-##Usage
+## Usage
 
 ```java
 long current = System.currentTimeMillis();
@@ -12,7 +12,7 @@ String hours = TimeAgo.timeUntil(current - (6 * 60 * 60 * 1000));	// returns "6 
 ```
 
 
-##Changelog
+## Changelog
 
 * 1.1
  * Fixed crash when displaying days, months or years number
@@ -22,11 +22,11 @@ String hours = TimeAgo.timeUntil(current - (6 * 60 * 60 * 1000));	// returns "6 
 
 
 
-##Contribution
+## Contribution
 
 If you would like to contribute locale-specific properties files please fork this repository and open a pull request.
 
-##Other
+## Other
 
 [MIT License](http://www.opensource.org/licenses/mit-license.html)
 
